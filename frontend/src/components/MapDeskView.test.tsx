@@ -1,0 +1,26 @@
+import{MemoryRouter}from'react-router-dom'
+import type{ReactNode}from'react'
+const render=(ui:ReactNode)=>rawRender(<MemoryRouter>{ui}</MemoryRouter>)
+import{cleanup,fireEvent,render as rawRender,screen,within}from'@testing-library/react'
+import{afterEach,expect,it,vi}from'vitest'
+import{readFileSync}from'node:fs'
+import{resolve}from'node:path'
+vi.mock('./ConnectedCampusScene',()=>({default:()=> <div data-testid="map-work-surface"/>}))
+import MapDeskView from'./MapDeskView'
+const common=JSON.parse(readFileSync(resolve(process.cwd(),'../../outputs/g4_lh_full_product_20261029_01/LH_common.json'),'utf8'))
+function props(){const junctions=Object.fromEntries(Object.entries(common.geometry.junctions).map(([id,j]:[string,any])=>[id,{state:'G'.repeat(j.links.length),stage:'green',approach:j.approaches[0].id,pending:null,raw_candidate:j.approaches[0].id,reason:'hold',veto:null,metadata_availability:{own_pending:true,veto:false},observation:j.approaches.map(()=>({queue:0,running:0,count:0,pressure:0}))}]));return{region:'LH',arm:'pressure',data:{common,run:{run_id:'q',policy:'pressure',frames:[],changes:{},duration:1800},context:{},gis:{edges:[]}},meta:{name:'校区',planned:268,policy:'压力基线',source:'SinD迁移',network_sha256:'hash'},frame:{time:.2,action_time:0,vehicles:[],junctions},clock:{current:{time:.2,speed:2,playing:false,stamp:0}},focus:null,chosen:null,revision:0,detail:false,playing:false,time:.2,speed:2,event:null,eventError:'',eventOn:false,selectedRoad:null,onRegion:vi.fn(),onArm:vi.fn(),onSeek:vi.fn(),onPlay:vi.fn(),onSpeed:vi.fn(),onDetail:vi.fn(),onFocus:vi.fn(),onChoose:vi.fn(),onVehicle:vi.fn(),onEvent:vi.fn(),onRoad:vi.fn()}as any}
+afterEach(cleanup)
+it('keeps the map primary while individual harm is always discoverable',()=>{render(<MapDeskView {...props()}/>);expect(screen.getByTestId('map-work-surface')).toBeTruthy();expect(screen.queryByRole('region',{name:'方案对照面板'})).toBeNull();fireEvent.click(screen.getByRole('button',{name:'47辆耗时增加 · 最差+62.4秒'}));expect(screen.getByRole('region',{name:'方案对照面板'})).toBeTruthy();expect(within(screen.getByRole('region',{name:'方案对照面板'})).getByText('57,859.0')).toBeTruthy();fireEvent.click(screen.getByRole('button',{name:'关闭分析面板'}));expect(screen.queryByRole('region',{name:'方案对照面板'})).toBeNull()})
+it('selected-object details preserve unknown veto and a visible close action',()=>{const p=props();p.focus='LHB';render(<MapDeskView {...p}/>);expect(screen.getByRole('complementary',{name:'所选对象详情'})).toBeTruthy();expect(screen.getByText('未记录')).toBeTruthy();fireEvent.click(screen.getByRole('button',{name:'关闭对象详情'}));expect(p.onFocus).toHaveBeenCalledWith(null);expect(p.onChoose).toHaveBeenCalledWith(null)})
+it('opens source and assumption information without claiming field traffic',()=>{render(<MapDeskView {...props()}/>);fireEvent.click(screen.getAllByRole('button',{name:'来源与假设'})[0]);expect(screen.getByRole('region',{name:'来源与假设面板'})).toBeTruthy();expect(screen.getByText(/不代表校园实测车流/)).toBeTruthy()})
+
+it('presents recorded signal protection codes as operational Chinese labels',()=>{const p=props();p.focus='LHB';p.frame.junctions.LHB.veto=['fixed_green_duration'];p.frame.junctions.LHB.metadata_availability={own_pending:false,veto:true};render(<MapDeskView {...p}/>);expect(screen.getByText('固定时长保护')).toBeTruthy();expect(screen.queryByText('fixed_green_duration')).toBeNull()})
+
+it('keeps selected junction evidence above the optional switch list',()=>{const p=props();p.focus='LHB';render(<MapDeskView {...p}/>);expect(screen.queryByRole('button',{name:'莲花街—长椿路'})).toBeNull();fireEvent.click(screen.getByRole('button',{name:'切换路口'}));expect(screen.getByRole('button',{name:'莲花街—长椿路'})).toBeTruthy();expect(screen.getByRole('complementary',{name:'所选对象详情'})).toBeTruthy()})
+
+it('moves keyboard focus into source evidence and restores its trigger on close',()=>{render(<MapDeskView {...props()}/>);const trigger=screen.getAllByRole('button',{name:'来源与假设'})[0];trigger.focus();fireEvent.click(trigger);expect(document.activeElement).toBe(screen.getByRole('region',{name:'来源与假设面板'}));fireEvent.click(screen.getByRole('button',{name:'关闭分析面板'}));expect(document.activeElement).toBe(trigger)})
+
+it('retains the registered task across object-detail and evaluation links',()=>{const p=props();p.focus='LHB';p.navigationPath=(path:string)=>path+'?task=9b22fe8289404446b66d26eae107984a';render(<MapDeskView {...p}/>);for(const label of ['检查车道与灯组','查看控制依据与方案','查阅执行记录','完整方案评估'])expect(screen.getByRole('link',{name:label}).getAttribute('href')).toContain('?task=9b22fe8289404446b66d26eae107984a')})
+
+// The compact overview must carry the same recorded clock as the map inspector.
+it('shows each node recorded remaining time without inventing the unknown tail',()=>{const p=props();p.time=12;p.frame.time=12;p.data.run.recorded_signal_timeline=true;p.data.run.changes={LHA:[{time:0},{time:30}],LHB:[{time:0},{time:15}],LHC:[{time:0}]};const {container}=render(<MapDeskView {...p}/>);expect(container.querySelector('[data-node-remaining="LHA"]')?.textContent).toBe('余18秒');expect(container.querySelector('[data-node-remaining="LHB"]')?.textContent).toBe('余3秒');expect(container.querySelector('[data-node-remaining="LHC"]')).toBeNull();fireEvent.click(screen.getByRole('button',{name:'莲花街—雪松路'}));expect(p.onFocus).toHaveBeenCalledWith('LHB')})

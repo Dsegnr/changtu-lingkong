@@ -1,0 +1,13 @@
+import{cleanup,fireEvent,render,screen}from'@testing-library/react'
+import{afterEach,expect,it,vi}from'vitest'
+import Comparison,{baselineEvidence}from'./LHBaselineComparison'
+import{controlEvents}from'./connectedControlEvidence'
+import type{ConnectedRun}from'./connectedCampusTypes'
+import{recordedPhaseRemaining}from'./connectedSignalTiming'
+afterEach(cleanup)
+function fixture(){const metrics={S_sum_s:300,mean_scheduled_cost_s:100,p95_scheduled_cost_s:110,source_schedule_entry_wait_s:0,max_observed_continuous_stop_s:10,in_network_duration_s:300};return{joint_candidate_admitted:false,baseline_comparison:{structural_pair_passed:true,paired:3,benefited:1,unchanged:1,harmed:1,worst_harm_s:10},runs:{fixed:{label:'f',run_id:'f',arrived:3,metrics},pressure:{label:'q',run_id:'q',arrived:3,metrics:{...metrics,S_sum_s:290}}},vehicles:[80,100,110].map((cost,i)=>({id:'v'+i,runs:{fixed:{cost:100},pressure:{cost}}}))}}
+it('keeps an individual loss visible despite improved total and locates its vehicle',()=>{const on=vi.fn();render(<Comparison common={fixture()} onVehicle={on}/>);fireEvent.click(screen.getByText('受损车辆明细（1辆）'));fireEvent.click(screen.getByRole('button',{name:'定位受损车辆 v2'}));expect(on).toHaveBeenCalledWith('v2');expect(screen.getByText('+10.0秒')).toBeTruthy();expect(screen.getByText(/联合AI/)).toBeTruthy()})
+it('rejects a summary hiding a harmed vehicle or missing paired metrics',()=>{for(const change of [(x:any)=>x.baseline_comparison.harmed=0,(x:any)=>x.runs.fixed.metrics.S_sum_s=NaN,(x:any)=>x.joint_candidate_admitted=true]){const x=fixture();change(x);expect(()=>baselineEvidence(x)).toThrow()}})
+it('leaves legacy unpaired evidence without a fabricated comparison',()=>{expect(baselineEvidence({})).toBeNull()})
+it('unknown veto is not interpreted as a no-veto evaluation',()=>{const a={state:'G',stage:'green',approach:'N',pending:null,raw_candidate:'N',reason:'hold',veto:null,metadata_availability:{veto:false},observation:[]};const r={run_id:'x',frames:[{time:.2,action_time:0,junctions:{A:a}},{time:10.2,action_time:10,junctions:{A:{...a,reason:'maximum_shared_lane_pressure'}}}]}as unknown as ConnectedRun;expect(controlEvents(r)).toHaveLength(1)})
+it('macro timing follows whole-junction clearance, not one red head',()=>{const r={recorded_signal_timeline:true,changes:{A:[{time:.2,state:'Gr',stage:'green'},{time:30.2,state:'yr',stage:'yellow'},{time:33.2,state:'rr',stage:'all_red'},{time:35.2,state:'rG',stage:'green'},{time:65.2,state:'ry',stage:'yellow'}]}};expect(recordedPhaseRemaining(r,'A',33.2)).toBeCloseTo(2);expect(recordedPhaseRemaining(r,'A',35.2)).toBeCloseTo(30);expect(recordedPhaseRemaining(r,'A',65.2)).toBeNull();expect(recordedPhaseRemaining({...r,recorded_signal_timeline:false},'A',33.2)).toBeNull()})

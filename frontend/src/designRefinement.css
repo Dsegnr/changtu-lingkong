@@ -1,0 +1,58 @@
+/* A traffic operations desk: map, current node states and one recorded clock. */
+.designrefine-shell{--traffic-ink:#262c32;--traffic-muted:#626b73;--traffic-line:#e2e4e5;--traffic-action:#315f7d;--traffic-paper:#fff;--traffic-nav:#f3f4f3}
+.designrefine-topbar.consolidated-topbar{background:#fff;border-bottom-color:#e2e4e5}
+.designrefine-topbar.consolidated-topbar .identity h1{color:#262c32;font-size:17px;font-weight:650}
+.designrefine-topbar .mapdesk-brand-caption{color:#687078}
+.designrefine-shell.consolidated-shell .sidebar.studio-nav{background:var(--traffic-nav);border-color:var(--traffic-line);padding-top:20px}
+.designrefine-shell.consolidated-shell .studio-nav .nav-item{color:#646c73;border-radius:5px;min-height:42px;padding:10px 9px}
+.designrefine-shell.consolidated-shell .studio-nav .nav-item.active{background:#e5e9eb;box-shadow:none;color:#274f69}
+.designrefine-shell.consolidated-shell .studio-nav .nav-item:hover{background:#e9eded;color:#313e48}
+.designrefine-shell .studio-nav .nav-item svg{width:16px;height:16px}
+.designrefine-shell.consolidated-shell .studio-nav>p{font-size:11px;color:#788086;font-weight:400}
+.designrefine-shell.consolidated-shell .studio-nav .product-nav-secondary{border-color:#dfe2e2;margin-top:24px;padding-top:16px}
+.designrefine-shell .control-desk.consolidated-desk{--desk-ink:#262c32;--desk-muted:#626b73;--desk-line:#e2e4e5;--desk-accent:#315f7d;color:var(--traffic-ink)}
+.designrefine-shell .control-desk.consolidated-desk .desk-context{height:60px;min-height:60px;gap:16px}
+.designrefine-shell .control-desk.consolidated-desk .desk-context h2{color:#262c32;font-size:17px;letter-spacing:0;font-weight:650}
+.designrefine-shell .consolidated-desk .desk-context .desk-region{background:#f2f3f3}
+.designrefine-shell .consolidated-desk .desk-context .desk-region button[aria-pressed=true]{color:#315f7d;border-color:#d0d9de!important}
+.designrefine-shell .workspace-source-menu>summary{border-color:#e2e4e5;box-shadow:none;background:#fafbfb}
+.designrefine-shell .consolidated-desk .desk-content{height:calc(100dvh - 152px)}
+.designrefine-shell .consolidated-desk .desk-content.has-panel{grid-template-columns:minmax(0,1fr) 300px}
+.designrefine-shell .consolidated-desk .desk-mapbar{min-height:42px;padding:5px 12px;border-bottom-color:#e2e4e5}
+.designrefine-shell .consolidated-desk .desk-strategy{background:#f0f2f2}
+.designrefine-shell .control-desk.consolidated-desk .desk-strategy button[aria-pressed=true]{color:#315f7d;background:#fff;box-shadow:0 1px 2px #26313b14}
+.designrefine-shell .control-desk.consolidated-desk .desk-map-area{min-height:260px}
+.designrefine-shell .consolidated-desk .connected-canvas{background:#edf0ef}
+.designrefine-shell .control-desk.consolidated-desk .connected-map-junction{box-shadow:0 1px 3px #26313b16!important;border:1px solid #d6ddde!important;border-left:3px solid #628491!important;border-radius:3px!important;padding:4px 8px!important;font-size:11px!important;line-height:1.5!important;min-width:0!important;color:#334650!important;background:#ffffffed!important}
+.designrefine-shell .control-desk.consolidated-desk .connected-map-junction[aria-pressed=true]{border-color:#315f7d!important;background:#fff!important}
+.designrefine-shell .consolidated-desk .desk-sidebar{background:#fff;border-color:#e2e4e5}
+.designrefine-shell .consolidated-desk .desk-object-heading{padding:15px 16px 12px}
+.designrefine-shell .consolidated-desk .desk-object-heading h3{font-size:14px;color:#262c32}
+.designrefine-shell .consolidated-desk .desk-list-caption{color:#737b80;padding-bottom:9px}
+.designrefine-shell .control-desk.consolidated-desk .desk-object-row{padding:10px 6px;min-height:68px;border-bottom:1px solid #ecefef!important;border-radius:0;margin:0;grid-template-columns:29px minmax(0,1fr) 26px}
+.designrefine-shell .control-desk.consolidated-desk .desk-object-row[aria-pressed=true]{background:#edf2f4}
+.designrefine-shell .consolidated-desk .desk-node-id{font-weight:600;color:#616d74;font-size:11px}
+.designrefine-shell .consolidated-desk .desk-object-name{color:#313c45;font-size:13px}
+.designrefine-shell .consolidated-desk .desk-object-name small{gap:4px;font-size:11px;color:#666f76}
+.designrefine-shell .consolidated-desk .desk-node-recorded{margin-left:auto;white-space:nowrap;font-variant-numeric:tabular-nums;color:#526775}
+.designrefine-shell .consolidated-desk .desk-object-row>b{font-size:18px;color:#59666e;font-weight:600}
+.designrefine-shell .consolidated-desk .desk-object-row>b[data-has-queue=true]{color:#946423}
+.designrefine-shell .consolidated-desk .desk-timeline{border-color:#e2e4e5;min-height:50px;padding:7px 12px}
+.designrefine-shell .control-desk.consolidated-desk .desk-play,.designrefine-shell .control-desk.consolidated-desk .desk-primary{background:#315f7d;border-color:#315f7d}
+.designrefine-shell .control-desk.consolidated-desk input[type=range]{accent-color:#315f7d}
+.designrefine-shell .consolidated-desk .desk-phase-heading{background:#fafbfb;border-top:1px solid #eef0f0;min-height:30px}
+.designrefine-shell .consolidated-desk .desk-phase-heading>button{color:#343e46;font-size:12px;font-weight:600}
+.designrefine-shell .consolidated-desk .desk-phase-records{background:#fafbfb;padding:0 14px 8px}
+.designrefine-shell .consolidated-desk .desk-phase-records>header{margin-bottom:3px;font-size:10px;color:#68747d}
+.designrefine-shell .consolidated-desk .desk-phase-row{height:24px;grid-template-columns:109px minmax(0,1fr)}
+.designrefine-shell .control-desk.consolidated-desk .desk-phase-track{height:16px;min-height:16px;background:#e9eded}
+.designrefine-shell .consolidated-desk .desk-phase-segment small{line-height:14px}
+.designrefine-shell .consolidated-desk .desk-phase-scale{margin-left:118px}
+.designrefine-shell .consolidated-desk .desk-phase-cursor{background:#315f7d}
+.designrefine-shell .consolidated-desk .desk-bottom{background:#fff;border-color:#e2e4e5;color:#5c6870}
+.designrefine-shell .consolidated-desk .desk-phase{background:#f2f6f3}
+.designrefine-shell .consolidated-desk .desk-source-note{color:#667179}
+.designrefine-shell .control-desk.consolidated-desk :focus-visible{outline:2px solid #315f7d;outline-offset:2px}
+@media(min-width:701px)and(max-width:1100px){.designrefine-shell .control-desk.consolidated-desk .desk-context{height:auto;min-height:60px;gap:8px 12px}.designrefine-shell .consolidated-desk .desk-content{height:calc(100dvh - 182px)}.designrefine-shell .consolidated-desk .desk-content.has-panel{grid-template-columns:minmax(0,1fr) 280px}}
+@media(max-width:700px){.designrefine-shell.consolidated-shell .sidebar.studio-nav{padding:3px 5px;background:#fff}.designrefine-shell.consolidated-shell .studio-nav .nav-item{padding:3px 0;min-height:50px}.designrefine-shell .control-desk.consolidated-desk .desk-context{height:auto;min-height:0;gap:10px;padding:12px}.designrefine-shell .consolidated-desk .desk-content,.designrefine-shell .consolidated-desk .desk-content.has-panel{height:auto;display:flex}.designrefine-shell .control-desk.consolidated-desk .desk-map-area{min-height:360px}.designrefine-shell .control-desk.consolidated-desk .desk-object-row{min-height:68px;grid-template-columns:29px minmax(0,1fr) 26px}.designrefine-shell .consolidated-desk .desk-junction-list{display:block;padding:0 12px}.designrefine-shell .control-desk.consolidated-desk .desk-object-row{width:100%}.designrefine-shell .consolidated-desk .desk-object-name{font-size:13px}.designrefine-shell .consolidated-desk .desk-phase-row{grid-template-columns:90px minmax(0,1fr);height:29px}.designrefine-shell .consolidated-desk .desk-phase-scale{margin-left:99px}.designrefine-shell .consolidated-desk .desk-timeline .desk-play{min-height:44px}.designrefine-shell .consolidated-desk .desk-phase-heading>button{min-height:44px}.designrefine-shell .consolidated-desk .desk-phase-heading>span{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.designrefine-shell button,.designrefine-shell a{transition:none!important;animation:none!important}}

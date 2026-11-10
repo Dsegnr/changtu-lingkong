@@ -1,0 +1,97 @@
+/* One traffic work surface: source, region and date share a single context row. */
+.consolidated-topbar.studio-topbar.product-topbar{height:48px;padding:0 18px}
+.consolidated-topbar .identity h1{font-size:17px;color:#253642}
+.consolidated-topbar .mapdesk-brandmark{color:#246b8e;width:24px;height:24px}
+.consolidated-topbar .mapdesk-global-state{background:transparent;border:0;color:#61717c}
+.app-shell.studio-shell.consolidated-shell{min-height:calc(100dvh - 48px);background:#f5f7f9}
+.consolidated-shell .sidebar.studio-nav{width:128px;height:calc(100dvh - 48px);background:#edf1f4;border-right:1px solid #dde4e9;padding:18px 8px}
+.consolidated-shell .studio-nav>p{color:#728390;padding:0 10px 10px;font-size:11px}
+.consolidated-shell .studio-nav .nav-item{color:#526572;font-size:13px;gap:9px;padding:11px 10px}
+.consolidated-shell .studio-nav .nav-item>span{font-size:13px}
+.consolidated-shell .studio-nav .nav-item.active{background:#dfeaf0;color:#225e7c;box-shadow:inset 2px 0 #246b8e}
+.consolidated-shell .studio-nav .nav-item:hover{background:#e4ebf0;color:#254b62}
+.consolidated-shell .studio-nav .product-nav-secondary{border-color:#d7e0e6;margin-top:20px;padding-top:14px}
+.consolidated-shell .studio-nav .product-nav-library,.consolidated-shell .studio-nav .mapdesk-nav-foot{color:#687c89;font-size:11px}
+.consolidated-shell .studio-nav .mapdesk-nav-foot{padding:15px 9px;line-height:1.8}
+.control-desk.studio-desk.consolidated-desk{--desk-ink:#253642;--desk-muted:#61717c;--desk-line:#dde4e9;--desk-accent:#246b8e;background:#fff}
+.consolidated-shell .control-desk.consolidated-desk .desk-context{min-height:64px;height:64px;padding:8px 16px;gap:14px;position:relative;z-index:25}
+.consolidated-desk .desk-title{flex-shrink:0}
+.consolidated-shell .consolidated-desk .desk-context h2{font-size:16px;line-height:1.5;margin:0;font-weight:650;color:#253642;white-space:nowrap}
+.consolidated-desk .desk-context .desk-scope{font-size:12px;color:#61717c}
+.consolidated-desk .desk-context .desk-region{margin-left:auto;flex-shrink:0;background:#f0f4f6;padding:3px;border-radius:4px}
+.consolidated-desk .desk-context .desk-region button{font-size:12px;padding:5px 10px;min-height:32px}
+.consolidated-desk .desk-context .desk-region button[aria-pressed=true]{color:#246b8e;border-color:#becfd9!important;background:#fff!important}
+.consolidated-desk .desk-context .desk-source{font-size:12px;padding:5px 0 5px 6px;white-space:nowrap}
+.consolidated-desk .desk-context .fluid-date-picker{font-size:12px;white-space:nowrap;color:#61717c;display:flex;align-items:center;gap:7px;margin:0}
+.consolidated-desk .desk-context .fluid-date-picker select{font-size:12px;padding:5px 8px;min-height:32px;width:123px}
+.consolidated-desk .workspace-source-menu{position:relative;min-width:0;flex-shrink:0;color:#253642;font-size:12px}
+.workspace-source-menu>summary{display:flex;align-items:center;gap:9px;list-style:none;cursor:pointer;min-height:34px;padding:5px 10px;border:1px solid #d8e1e7;border-radius:4px;background:#fff;white-space:nowrap}
+.workspace-source-menu>summary::-webkit-details-marker{display:none}
+.workspace-source-menu>summary>span{color:#72838e;font-size:11px}
+.workspace-source-menu>summary>b{font-size:12px;font-weight:500}
+.workspace-source-menu[open]>summary{border-color:#246b8e}
+.workspace-source-popover{position:absolute;left:0;top:calc(100% + 8px);width:310px;max-width:calc(100vw - 32px);padding:12px;background:#fff;border:1px solid #d5e0e6;border-radius:5px;box-shadow:0 6px 22px #25364216;z-index:60}
+.workspace-source-popover p{margin:0 0 8px;font-size:12px;color:#61717c}
+.control-desk.consolidated-desk .workspace-source-popover button{display:block;width:100%;text-align:left;padding:10px;border:0;background:#fff;border-radius:3px;font-size:13px;line-height:1.5}
+.control-desk.consolidated-desk .workspace-source-popover button[aria-pressed=true]{color:#225e7c;background:#e9f1f5}
+.workspace-source-popover button small{display:block;font-size:11px;line-height:1.7;font-weight:400;color:#61717c;margin-top:3px}
+.workspace-source-popover .workspace-source-note{font-size:11px;line-height:1.8;margin:11px 0 0;padding:9px 0 0;border-top:1px solid #e7edf0}
+.workspace-research-menu{margin-top:10px;padding-top:10px;border-top:1px solid #e7edf0}
+.workspace-research-menu>summary{font-size:12px;color:#526a79;cursor:pointer}
+.workspace-source-menu .recording-domain-bar{position:static!important;display:block!important;width:auto!important;min-height:0;margin:8px 0 0!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important}
+.workspace-source-menu .recording-domain-bar label{display:block;font-size:12px}
+.workspace-source-menu .recording-domain-bar select{display:block;width:100%;font-size:12px;margin:6px 0}
+.workspace-source-menu .recording-domain-bar p{font-size:11px;line-height:1.8;margin:8px 0;color:#61717c}
+.workspace-source-menu .recording-domain-bar a{display:block;font-size:12px;color:#246b8e;padding:5px 0}
+.consolidated-research-context{padding:12px 16px;background:#fff;border-bottom:1px solid #dde4e9;position:relative;z-index:35}
+.consolidated-research-context .workspace-source-menu{display:inline-block}
+.consolidated-shell .consolidated-desk .desk-content{height:calc(100dvh - 156px);min-height:400px}
+.consolidated-shell .consolidated-desk .desk-content.has-panel{grid-template-columns:minmax(0,1fr) 300px}
+.consolidated-desk .desk-mapbar{min-height:44px;padding:6px 12px;background:#fff;gap:9px}
+.consolidated-desk .desk-strategy{background:#f0f4f6;padding:3px;border-radius:4px}
+.consolidated-desk .desk-strategy button{font-size:12px;padding:4px 10px;min-height:28px;background:transparent}
+.control-desk.consolidated-desk button[aria-pressed=true]{color:#246b8e;border-color:#bdd0da;background:#eaf2f6}
+.control-desk.consolidated-desk .desk-strategy button[aria-pressed=true]{color:#246b8e;background:#fff;box-shadow:none}
+.consolidated-desk .desk-now{gap:12px;font-size:12px}
+.consolidated-desk .desk-now b{font-size:15px;font-weight:600;color:#253642}
+.consolidated-desk .desk-map-area{min-height:260px}
+.consolidated-desk .desk-timeline{min-height:52px;padding:8px 12px;gap:10px}
+.control-desk.consolidated-desk .desk-play,.control-desk.consolidated-desk .desk-primary{color:#fff;background:#246b8e;border-color:#246b8e;box-shadow:none}
+.control-desk.consolidated-desk .desk-play:hover,.control-desk.consolidated-desk .desk-primary:hover{background:#205c79}
+.control-desk.consolidated-desk input[type=range]{accent-color:#246b8e}
+.control-desk.consolidated-desk :focus-visible{outline:2px solid #246b8e;outline-offset:2px}
+.control-desk.consolidated-desk a{color:#246b8e}
+.consolidated-desk .desk-sidebar{border-left:1px solid #dde4e9}
+.consolidated-desk .desk-object-heading{padding:14px 16px 11px}
+.consolidated-desk .desk-object-heading h3{font-size:14px;color:#253642}
+.consolidated-desk .desk-object-row{padding:9px 7px;min-height:58px}
+.consolidated-desk .desk-object-name{font-size:13px;color:#304b5a}
+.consolidated-desk .desk-object-name small{font-size:11px}
+.consolidated-desk .desk-inspector{padding:0 16px 16px}
+.consolidated-desk .desk-inspector h3{font-size:17px;margin:8px 0 10px;color:#253642}
+.consolidated-desk .desk-inspector h4{font-size:13px;margin:17px 0 8px}
+.consolidated-desk .desk-phase{background:#f1f6f4;border-left-color:#7b9d90;padding:11px;min-height:60px}
+.consolidated-desk .desk-phase>strong{font-size:26px}
+.consolidated-desk .desk-active-approach{background:#f7f9fa;padding:8px 10px;font-size:12px}
+.consolidated-desk .desk-approaches th,.consolidated-desk .desk-approaches td{padding:8px 3px}
+.consolidated-desk .desk-execution-note{background:#f5f8fa;font-size:12px;padding:9px 10px;line-height:1.8}
+.consolidated-desk .desk-facts{font-size:12px;line-height:1.65;gap:9px}
+.consolidated-desk .desk-object-empty{padding:10px 16px 15px}
+.consolidated-desk .desk-object-empty h3{display:none}
+.consolidated-desk .desk-object-empty p{font-size:12px;line-height:1.8;margin:0 0 8px}
+.consolidated-desk .desk-bottom{min-height:44px;padding:8px 16px;background:#f7f9fb;font-size:12px;gap:14px}
+.consolidated-desk .desk-cost-pair{font-size:12px}
+.consolidated-desk .fluid-inspector-tabs{padding:8px 12px;background:#fff}
+.consolidated-desk .fluid-node-now{display:flex;flex-direction:column;gap:0;border-top:1px solid #e5ebef;margin:10px 0 14px}
+.control-desk.consolidated-desk .fluid-node-now button{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:10px;border:0;border-radius:0;border-bottom:1px solid #e5ebef;background:#fff;padding:9px 0;min-height:34px;text-align:left}
+.consolidated-desk .fluid-node-now button small{margin:0;font-size:11px;color:#61717c}
+.consolidated-desk .fluid-node-now button span{font-size:12px}
+.consolidated-desk .fluid-decision-panel{padding:12px 16px}
+.consolidated-desk .fluid-decision-panel>header{padding:0}
+.consolidated-desk .fluid-decision-panel h4{font-size:13px;font-weight:600;margin:14px 0 9px}
+.consolidated-desk .fluid-model-details{padding:11px 0;margin:10px 0;border-top:1px solid #e5ebef;border-bottom:1px solid #e5ebef}
+.consolidated-desk .fluid-model-details>summary{font-size:12px;cursor:pointer;color:#526a79}
+.consolidated-desk .fluid-model-caveat{font-size:12px;line-height:1.8}
+.consolidated-desk .fluid-actual-window{margin:12px 0;background:#f3f7fa;padding:10px;border-left:2px solid #aac4d3}
+@media(min-width:701px)and(max-width:1100px){.consolidated-shell .control-desk.consolidated-desk .desk-context{height:auto;min-height:64px;flex-wrap:wrap;gap:8px 12px}.consolidated-desk .desk-title{min-width:110px}.consolidated-desk .desk-context .desk-region{margin-left:0}.consolidated-shell .consolidated-desk .desk-content.has-panel{grid-template-columns:minmax(0,1fr) 280px}.consolidated-shell .consolidated-desk .desk-content{height:calc(100dvh - 182px)}.consolidated-desk .desk-now{gap:7px}.consolidated-desk .desk-mapbar .desk-panel-toggle{display:block}.consolidated-desk .desk-timeline .desk-text-button{display:none}}
+@media(max-width:700px){.consolidated-topbar.studio-topbar.product-topbar{height:48px;padding:0 13px}.consolidated-shell .sidebar.studio-nav{width:100%;height:60px;bottom:0;top:auto;padding:3px 5px;background:#fff;border-top:1px solid #dde4e9}.consolidated-shell .studio-nav .nav-item{padding:3px 0;gap:2px}.consolidated-shell .studio-nav .nav-item>span{font-size:11px}.consolidated-shell .studio-nav .nav-item.active{box-shadow:none;background:#eaf2f6}.consolidated-shell .control-desk.consolidated-desk .desk-context{height:auto;min-height:0;padding:12px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px}.consolidated-desk .desk-context .desk-source{grid-row:1;grid-column:2;text-align:right;padding:0;font-size:11px}.consolidated-desk .desk-context .workspace-source-menu{grid-row:2;grid-column:1/-1;max-width:100%;width:100%}.consolidated-desk .workspace-source-menu>summary{justify-content:space-between;min-height:36px}.consolidated-desk .workspace-source-popover{width:100%;max-width:none}.consolidated-desk .desk-context .desk-region{grid-row:3;grid-column:1/-1;margin:0;width:100%}.consolidated-desk .desk-context .desk-region button{min-height:36px;font-size:12px;flex:1}.consolidated-desk .desk-context .fluid-date-picker{grid-column:1/-1;grid-row:4;justify-content:space-between}.consolidated-desk .desk-context .fluid-date-picker select{width:calc(100% - 55px);min-height:34px}.consolidated-desk .desk-context .desk-scope{grid-row:2;grid-column:1/-1}.consolidated-shell .consolidated-desk .desk-content,.consolidated-shell .consolidated-desk .desk-content.has-panel{display:flex;flex-direction:column;height:auto;min-height:0}.consolidated-desk .desk-mapbar{padding:8px 10px;min-height:44px;gap:7px}.consolidated-desk .desk-now{font-size:11px;gap:8px}.consolidated-desk .desk-mapbar .desk-layers{margin-left:auto}.consolidated-desk .desk-content .desk-map-area{min-height:360px;height:360px;flex:none}.consolidated-desk .desk-timeline{padding:9px 12px;gap:8px;min-height:54px}.consolidated-desk .desk-timeline .desk-play{min-height:36px;min-width:50px}.consolidated-desk .desk-timeline output{font-size:16px}.consolidated-desk .desk-sidebar{border-left:0;border-top:1px solid #dde4e9;overflow:visible;max-height:none}.consolidated-desk .desk-object-heading{position:static}.consolidated-desk .desk-bottom{padding:10px 12px;gap:8px 12px}.consolidated-desk .desk-cost-pair{width:100%;order:0}.consolidated-desk .desk-object-row{width:100%;min-width:0}.consolidated-desk .desk-inspector h3{font-size:17px}.consolidated-desk .desk-approaches{font-size:12px}.consolidated-desk .desk-source-foot{padding:12px 16px}}

@@ -1,0 +1,95 @@
+/* Traffic work surface. Scoped to the new shell; no map physics or data changes. */
+.studio-topbar.product-topbar{height:52px;border-bottom:1px solid #dce2e6;padding:0 20px;background:#fff}
+.studio-topbar .identity h1{font-size:18px;font-weight:650;color:#213843}
+.studio-topbar .mapdesk-brandmark{color:#245978}
+.studio-topbar .mapdesk-brand-caption{color:#596c78;font-size:13px}
+.studio-topbar .mapdesk-global-state{font-size:12px;background:#f2f5f6;border:1px solid #e0e6e9;border-radius:4px;padding:5px 9px;color:#526570}
+.studio-topbar .mapdesk-global-state i{display:none}
+.app-shell.studio-shell{min-height:calc(100dvh - 52px);background:#f4f6f7}
+.sidebar.studio-nav{width:154px;background:#253943;border-right:0;color:#c0ccd2;padding:22px 10px;height:calc(100dvh - 52px)}
+.studio-nav>p{color:#aebdc5;font-size:12px;padding:0 12px 14px}
+.studio-nav .nav-item{border-radius:4px;padding:12px 11px;color:#bfccd3;gap:11px;min-height:44px}
+.studio-nav .nav-item>span{font-size:13px}
+.studio-nav .nav-item.active{background:#385361;color:#fff;font-weight:600;box-shadow:inset 3px 0 #9bc5d5}
+.studio-nav .nav-item:hover{background:#314b58;color:#fff}
+.studio-nav .nav-item svg{width:17px;height:17px}
+.studio-nav .product-nav-secondary{border-color:#49606b;margin-top:24px;padding-top:17px}
+.studio-nav .product-nav-library,.studio-nav .mapdesk-nav-foot{color:#bfccd3;font-size:12px}
+.studio-nav .mapdesk-nav-foot{padding:18px 11px;line-height:1.9}
+.studio-desk.control-desk{--desk-ink:#253944;--desk-muted:#5d707b;--desk-line:#dce3e7;--desk-accent:#245978;background:#f3f5f6}
+.studio-shell .studio-desk .desk-context{min-height:74px;padding:14px 130px 14px 22px;gap:22px}
+.studio-desk .desk-context h2{font-size:18px;margin:2px 0 0;font-weight:650;color:#243c48}
+.studio-desk .desk-location{font-size:12px;color:#677982}
+.studio-desk .desk-region{background:#eef2f4;padding:3px;border-radius:5px}
+.studio-desk .desk-region button{font-size:13px;min-height:34px;padding:5px 13px}
+.studio-desk .desk-region button[aria-pressed=true]{color:#245978;border-color:#c4d2da!important;box-shadow:none}
+.studio-desk .desk-mapbar{min-height:48px;padding:7px 14px;gap:10px;background:#fafbfc}
+.studio-desk .desk-strategy{background:#e9eef1;padding:3px}
+.studio-desk .desk-strategy button{font-size:13px;padding:5px 12px;min-height:30px}
+.studio-desk .desk-strategy button[aria-pressed=true]{color:#245978;box-shadow:0 1px 2px #25394312}
+.studio-desk .desk-now{font-size:12px;gap:14px}
+.studio-desk .desk-now b{font-size:16px;color:#243c48}
+.studio-desk .desk-content.has-panel{grid-template-columns:minmax(0,1fr) 324px}
+.studio-desk .desk-content{height:calc(100dvh - 170px)}
+.studio-desk .desk-map-area{min-height:340px}
+.studio-desk .connected-map-junction{font-size:12px!important;border-color:#c4d2da;box-shadow:0 1px 3px #203d4d12;border-radius:3px}
+.studio-desk .desk-sidebar{background:#fff}
+.studio-desk .desk-object-heading{padding:18px 18px 12px;position:sticky;top:0;background:#fff;z-index:2;border-bottom:1px solid #e8edf0}
+.studio-desk .desk-object-heading h3{font-size:15px}
+.studio-desk .desk-object-heading>span{font-size:12px;color:#637681}
+.studio-desk .desk-list-caption{display:flex;justify-content:space-between;padding:9px 18px 4px;font-size:11px;color:#637681}
+.studio-desk .desk-junction-list{padding:0 9px 10px}
+.studio-desk .desk-object-row{grid-template-columns:34px minmax(0,1fr) 36px;gap:8px;min-height:62px;padding:10px 9px;border-radius:3px;margin:0;border-bottom:1px solid #edf1f3!important}
+.studio-desk .desk-object-row[aria-pressed=true]{background:#eaf1f5;color:#254b62;box-shadow:inset 3px 0 #245978}
+.studio-desk .desk-object-row:hover{background:#f1f5f7}
+.studio-desk .desk-node-id{font-size:12px;font-weight:600;color:#5d747f}
+.studio-desk .desk-object-name{font-size:13px;line-height:1.7}
+.studio-desk .desk-object-name small{font-size:11px;gap:5px}
+.studio-desk .desk-stage-dot{display:inline-block;width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.studio-desk .desk-object-row>b{text-align:right;font-size:18px;font-weight:600;color:#536974}
+.studio-desk .desk-object-row>b[data-has-queue=true]{color:#94671c}
+.studio-desk .desk-inspector{padding:0 18px 20px;border-top:1px solid #dce3e7;background:#fff}
+.studio-desk .desk-inspector>header{min-height:40px;padding-top:10px;color:#627782;font-size:12px}
+.studio-desk .desk-inspector h3{font-size:18px;line-height:1.6;color:#243c48;font-weight:650;margin:9px 0 12px}
+.studio-desk .desk-phase{padding:12px 13px;margin:10px 0 0;background:#eef4f5;min-height:64px;border-left:3px solid #7d969f;border-radius:0;gap:9px}
+.studio-desk .desk-phase>span{font-size:14px;font-weight:600}
+.studio-desk .desk-phase>strong{font-size:30px;color:#243c48;line-height:1}
+.studio-desk .desk-phase>strong small{font-size:11px;color:#5e727c;display:block;text-align:right;margin-top:5px;font-weight:400}
+.studio-desk .desk-active-approach{font-size:12px;color:#425c6a;padding:9px 12px;background:#f4f7f8;line-height:1.8;display:flex;justify-content:space-between;gap:9px}
+.studio-desk .desk-active-approach b{font-weight:600;text-align:right}
+.studio-desk .desk-inspector .desk-source-note{font-size:12px;line-height:1.75;margin:10px 0 15px;color:#637681}
+.studio-desk .desk-inspector h4{font-size:14px;font-weight:600;margin:21px 0 8px;display:flex;justify-content:space-between;gap:10px;align-items:center}
+.studio-desk .desk-inspector h4 small{font-size:11px;color:#637681;font-weight:400}
+.studio-desk .desk-approaches{font-size:12px;width:100%;margin:0}
+.studio-desk .desk-approaches th,.studio-desk .desk-approaches td{padding:10px 4px}
+.studio-desk .desk-approaches thead th{font-size:11px;background:#f6f8f9}
+.studio-desk .desk-approaches .passing th,.studio-desk .desk-approaches .passing td{color:#246c57;background:#edf5f1}
+.studio-desk .desk-execution-note{padding:11px 12px;background:#f5f7f8;color:#344e5b;font-size:13px;line-height:1.8;border-left:2px solid #afc2cb;margin:8px 0 12px}
+.studio-desk .desk-facts{font-size:12px;gap:12px;line-height:1.75;margin:14px 0}
+.studio-desk .desk-task-links{margin:18px 0 0;padding-top:13px;border-top:1px solid #e4eaee;gap:16px;font-size:12px}
+.studio-desk .desk-vehicle-picker{font-size:12px;padding:14px 0;margin:0 18px;border-top:1px solid #e4eaee;gap:10px}
+.studio-desk .desk-vehicle-picker select{font-size:12px;min-height:34px}
+.studio-desk .desk-object-empty{padding:18px;line-height:1.9}
+.studio-desk .desk-object-empty h3{font-size:15px}
+.studio-desk .desk-object-empty p{font-size:13px;color:#5e737d}
+.studio-desk .desk-source-foot{border-top:1px solid #e4eaee;padding:15px 18px;font-size:11px;color:#637681}
+.studio-desk a{color:#245978}
+.studio-desk .desk-timeline{padding:11px 14px;gap:11px;background:#fff}
+.studio-desk .desk-play,.studio-desk .desk-primary{background:#245978;border-color:#245978;color:#fff}
+.studio-desk .desk-play:hover,.studio-desk .desk-primary:hover{background:#1d4963}
+.studio-desk .desk-timeline output{font-size:18px;color:#243c48}
+.studio-desk .desk-timeline input{accent-color:#245978}
+.studio-desk .desk-phase-heading{padding:2px 12px 4px;min-height:32px;background:#fafbfc}
+.studio-desk .desk-phase-records{background:#fafbfc;padding-bottom:12px}
+.studio-desk .desk-phase-node[aria-pressed=true]{color:#245978}
+.studio-desk .desk-phase-cursor{background:#245978}
+.studio-desk .desk-bottom{min-height:44px;padding:9px 18px;background:#f7f9fa;gap:18px;flex-wrap:wrap;font-size:12px}
+.studio-desk .desk-bottom .desk-cost-pair{color:#536c79;font-size:12px}
+.studio-desk .desk-cost-pair b{color:#243c48;font-weight:600;font-variant-numeric:tabular-nums}
+.studio-desk .desk-cost-pair span{margin:0 6px;color:#778a94}
+.studio-desk .desk-analysis{border-top:2px solid #a1b7c3}
+.studio-desk :focus-visible{outline-color:#245978}
+@media(max-width:1200px) and (min-width:701px){.studio-desk .desk-content.has-panel{grid-template-columns:minmax(0,1fr) 300px}.studio-desk .desk-context{gap:14px}.studio-desk .desk-mapbar{gap:6px}.studio-desk .desk-object-name{font-size:12px}.studio-desk .desk-timeline .desk-text-button{display:none}.studio-desk .desk-mapbar .desk-panel-toggle{display:block}.studio-desk .desk-mapbar .desk-panel-toggle{font-size:11px}.studio-desk .desk-now{gap:8px}}
+@media(max-width:900px) and (min-width:701px){.sidebar.studio-nav{width:132px;padding:18px 7px}.studio-desk .desk-region button{padding:5px 8px}.studio-desk .desk-mapbar{flex-wrap:wrap}.studio-desk .desk-mapbar .desk-panel-toggle{display:none}.studio-desk .desk-content{height:auto;min-height:560px}.studio-desk .desk-main{min-height:560px}.studio-desk .desk-context h2{font-size:16px}}
+@media(max-width:700px){.studio-topbar.product-topbar{height:54px;padding:0 14px}.studio-topbar .mapdesk-global-state{border:0;background:transparent;padding:0;font-size:11px}.sidebar.studio-nav{width:100%;height:60px;padding:3px 5px;top:auto;bottom:0;background:#fff;border-top:1px solid #dce3e7}.studio-nav .nav-item{min-height:50px;padding:3px 0;color:#637681;border-radius:3px;gap:2px}.studio-nav .nav-item>span{font-size:11px}.studio-nav .nav-item.active{color:#245978;background:#eaf1f5;box-shadow:none}.studio-nav .nav-item:hover{color:#245978;background:#eaf1f5}.studio-nav .nav-item svg{width:19px;height:19px}.studio-shell .studio-desk .desk-context{min-height:0;padding:13px 14px;gap:9px;grid-template-columns:1fr auto}.studio-desk .desk-context h2{font-size:18px}.studio-desk .desk-region button{min-height:40px;font-size:13px}.studio-desk .desk-mapbar{padding:8px 12px;gap:8px}.studio-desk .desk-strategy button{min-height:36px;font-size:12px}.studio-desk .desk-now{font-size:11px;gap:9px}.studio-desk .desk-mapbar>.desk-text-button{font-size:12px}.studio-desk .desk-content,.studio-desk .desk-content.has-panel{display:flex;flex-direction:column;height:auto;min-height:0}.studio-desk .desk-map-area{height:370px;min-height:370px;flex:none}.studio-desk .desk-sidebar{width:100%;max-height:none;overflow:visible;border-left:0;border-top:1px solid #dce3e7}.studio-desk .desk-object-heading{position:static;padding:15px 16px 9px}.studio-desk .desk-junction-list{display:block;padding:0 9px 10px}.studio-desk .desk-object-row{min-height:56px;grid-template-columns:34px minmax(0,1fr) 36px;padding:8px 9px}.studio-desk .desk-object-name{font-size:13px}.studio-desk .desk-object-name small{font-size:11px}.studio-desk .desk-inspector{padding:0 16px 18px}.studio-desk .desk-inspector h3{font-size:18px}.studio-desk .desk-list-caption{padding:8px 18px 4px}.studio-desk .desk-inspector h4{font-size:14px}.studio-desk .desk-approaches{font-size:13px}.studio-desk .desk-timeline{padding:10px 12px;gap:9px;flex-wrap:wrap}.studio-desk .desk-timeline output{font-size:16px}.studio-desk .desk-timeline input{min-width:70px}.studio-desk .desk-play{min-height:40px}.studio-desk .desk-phase-heading>span{font-size:10px}.studio-desk .desk-bottom{padding:12px 15px;gap:8px 15px}.studio-desk .desk-cost-pair{width:100%;order:3}.studio-desk .desk-bottom a{margin-left:0}.studio-desk .desk-analysis{padding:0 14px 16px}.studio-desk .desk-object-empty{padding:16px}.studio-desk .desk-source-foot{padding:14px 16px}}
+@media(prefers-reduced-motion:reduce){.studio-shell *{scroll-behavior:auto}}

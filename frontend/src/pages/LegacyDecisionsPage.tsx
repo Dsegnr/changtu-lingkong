@@ -1,0 +1,14 @@
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { policeData } from '../lib/api'
+import { useWorkspace } from '../state/WorkspaceContext'
+import { clock, downloadJSON, type PolicePackage, type PolicePolicy } from '../types'
+
+export default function DecisionsPage() {
+  const { state, dispatch } = useWorkspace(), [data, setData] = useState<PolicePackage | null>(null), [error, setError] = useState(''), [filter, setFilter] = useState('all'), navigate = useNavigate()
+  useEffect(() => { let active = true; policeData().then(value => { if (active) setData(value) }).catch(reason => { if (active) setError(String(reason)) }); return () => { active = false } }, [])
+  if (error) return <div className="error" role="alert">{error}</div>
+  if (!data) return <div className="loading">正在加载决策窗口…</div>
+  const run = data.runs[state.policePolicy], rows = run.decisions.filter(d => filter === 'all' || (filter === 'executed' ? d.executed : !d.executed))
+  return <article className="workspace-page" data-testid="decisions-page"><header className="page-header"><div><h2>决策记录</h2><p>观测、约束、建议和执行状态 / 点击记录回到对应仿真帧</p></div><button onClick={() => downloadJSON(`畅途灵控_${state.policePolicy}_决策窗口.json`, { mode: data.mode, policy: state.policePolicy, closed_loop_verified: data.closed_loop_verified, decisions: run.decisions, limitations: data.limitations })}>导出决策窗口</button></header><div className="decision-filters"><label>运行方案 <select aria-label="记录运行方案" value={state.policePolicy} onChange={e => dispatch({ type: 'policePolicy', policy: e.target.value as PolicePolicy })}><option value="adaptive">受约束压力响应</option><option value="fixed">源固定配时</option></select></label><label>记录筛选 <select aria-label="记录筛选" value={filter} onChange={e => setFilter(e.target.value)}><option value="all">全部窗口</option><option value="executed">已执行续绿</option><option value="held">保持源程序</option></select></label><span className="small-note">{rows.length} / {run.decisions.length}条</span></div>{rows.length === 0 ? <div className="empty-state" role="status">本运行没有已执行续绿记录；未触发动作不计为控制闭环验证成功。</div> : <div className="table-scroll decision-table"><table><thead><tr><th>相对仿真时刻</th><th>源相位</th><th>当前 / 其他压力</th><th>建议</th><th>执行状态</th><th>依据或未执行原因</th><th>关联观测</th></tr></thead><tbody>{rows.map((row, index) => <tr key={index}><td>+{clock(row.observation_time - data.case.begin)}</td><td>{row.phase + 1}</td><td>{row.current_pressure} / {row.rival_pressure}</td><td>{row.action === 'extend' ? '续绿5秒' : '保持'}</td><td>{row.executed ? '已确认' : '未执行续绿'}</td><td>{row.reasons.join('；')}</td><td><button onClick={() => { const frame = run.frames.findIndex(f => f.time === row.observation_time); if (frame < 0) { setError('此记录缺少对应观测帧'); return } dispatch({ type: 'policeFrame', frame }); navigate('/police') }}>回放定位</button></td></tr>)}</tbody></table></div>}</article>
+}

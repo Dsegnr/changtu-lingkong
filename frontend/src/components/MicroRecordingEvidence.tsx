@@ -1,0 +1,19 @@
+import type{MicroCase,MicroFrame,MicroProduct}from'./microRecordingTypes'
+import{microNetGaps,microStageLabel,sceneTiming}from'./microRecordingPlayback'
+import type{MicroSceneRun}from'./microRecordingTypes'
+
+export default function MicroRecordingEvidence({product,recording,frame,selected,run,focus,onSelect,onSeek}:{product:MicroProduct;recording:MicroCase;frame:MicroFrame;selected:string;run:MicroSceneRun;focus:string|null;onSelect:(id:string)=>void;onSeek:(time:number,detail?:boolean)=>void}){
+ const v=frame.vehicles.find(v=>v.id===selected),ego=frame.vehicles.find(v=>v.id==='ego'),gaps=microNetGaps(frame,ego),audit=recording.audit
+ const maneuver=audit.maneuvers.find(m=>m.id===selected),service=audit.services.find(s=>s.id===selected),request=audit.requests.find(r=>r.id===selected)
+ const natural=product.cases.find(c=>c.mode==='natural')!.audit.services.find(s=>s.id===selected),requested=product.cases.find(c=>c.mode==='requested')!.audit.services.find(s=>s.id===selected)
+ const events=[{label:'请求已接收',time:request?.api_ack?request.time_s:undefined},{label:'横向开始',time:maneuver?.start_s},{label:'中心越线',time:maneuver?.center_cross_s},{label:'换道完成',time:maneuver?.end_s},{label:'进入路口',time:service?.entered_junction_s}]
+ return <aside className="connected-inspector micro-inspector" data-testid="micro-evidence"><section><h3>车辆状态与邻车响应</h3><label>研究车辆<select aria-label="机制追踪车辆" value={selected} onChange={e=>onSelect(e.target.value)}>{['ego','lead','rear'].map(id=><option key={id} value={id}>{id} · {id==='ego'?'研究车辆':id==='lead'?'初始前车':'初始后车'}</option>)}</select></label>
+ <p className={'micro-stage '+(v?.stage??'exited')} data-testid="micro-stage">{microStageLabel(v)}</p><div className="micro-metrics"><div><span>车速 / m·s⁻¹</span><strong data-testid="micro-speed">{v?.speed.toFixed(2)??'—'}</strong></div><div><span>加速度 / m·s⁻²</span><strong data-testid="micro-acceleration">{v?.acceleration.toFixed(2)??'—'}</strong></div></div>
+ <p className="micro-lane">主车道 <b>{v?.lane??'已离开'}</b></p><p className="connected-muted">横向速度 {v?.lateral_speed.toFixed(2)??'—'} m/s · 数值取原始记录帧</p>
+ <div className="micro-neighbor" data-testid="micro-gaps"><b>ego 目标车道净距投影</b>{gaps?<p>前 {gaps.front===null?'无邻车':gaps.front.toFixed(1)+' m'} / 后 {gaps.rear===null?'无邻车':gaps.rear.toFixed(1)+' m'}</p>:<p>已离开B→C路段，不再适用</p>}<small>平行车道矩形投影；不作为安全认证。</small></div>
+ {v?.stage==='unresolved'&&<p className="micro-warning">开始事件未配对，取消时刻未知；保留实际位置和横向速度，不推断仍在迁移或已经完成。</p>}
+ </section><section><h3>动作与通行记录</h3><ol className="micro-event-list">{events.map(e=><li key={e.label} data-reached={e.time!=null&&frame.time>=e.time}><span>{e.label}</span><button disabled={e.time==null} onClick={()=>onSeek(e.time!,e.label==='中心越线')}>{e.time==null?'未记录':e.time.toFixed(1)+' s'}</button></li>)}</ol><p className="connected-muted">中心越线不是完成；API接收不是执行。上述为完整片段的记录索引，已到达的时刻用实心标记。</p>
+ <div className="micro-comparison"><b>同输入自然／请求对照</b><p>进入路口 {natural?.entered_junction_s?.toFixed(1)??'—'} / {requested?.entered_junction_s?.toFixed(1)??'—'} s</p><small>本组未建立路口通行增益。</small></div></section>
+ <section><h3>{focus==='C'?'C · 已记录固定信号':focus?focus+' · 信号未记录':'信号证据范围'}</h3>{focus==='C'?<><div className="micro-signal-list">{[0,1,2].map(index=>{const timing=sceneTiming(run,'C',index,frame.time,'');return <span key={index} data-signal={timing?.light}><b>{index===2?'右转':'直行 '+(index+1)}</b>{timing?.label}</span>})}</div><p className="connected-muted">阶段余量由冻结固定程序计算，2400帧逐帧核验；红灯的阶段结束不代表下一刻转绿。</p></>:<p className="connected-muted">仅C的灯态有本片段记录。其他路口灯组为灰色，不显示倒计时或排队指标。</p>}</section>
+ <section><h3>未完成与截断</h3><p className="connected-muted">未完整配对的开始 {audit.unfinished_maneuvers.length} 条；到120秒截断仍未达终点 {audit.censored_vehicles.length} 辆（{audit.censored_vehicles.join('、')||'无'}）。进入路口与到达终点分别记账。</p><p className="connected-muted">碰撞、teleport、紧急停车记录为0。人工输入，不是现场安全认证。</p></section></aside>
+}

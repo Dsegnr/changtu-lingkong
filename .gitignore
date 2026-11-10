@@ -1,0 +1,16 @@
+**/node_modules/
+**/dist/
+**/__pycache__/
+**/*.pyc
+.planning/
+.venv/
+runtime/
+outputs/
+data/
+datasets/
+knowledge_base/
+知识库/
+**/.env
+**/*.db
+**/*.sqlite*
+**/*.log
